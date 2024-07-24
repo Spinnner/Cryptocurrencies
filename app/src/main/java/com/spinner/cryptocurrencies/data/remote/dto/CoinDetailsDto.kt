@@ -58,9 +58,10 @@ data class CoinDetailsDto(
 fun CoinDetailsDto.toCoinDetails(): CoinDetails {
     return CoinDetails(
         id = id,
-        symbol = symbol,
+        symbol = symbol.uppercase(),
         name = name,
         description = description.en,
+        price = marketData.currentPrice.usd,
         image = image.large,
         priceChangePercentage24h = marketData.priceChangePercentage24h,
         priceChangePercentage7d = marketData.priceChangePercentage7d,

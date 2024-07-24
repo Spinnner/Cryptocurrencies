@@ -91,4 +91,7 @@ dependencies {
     implementation(libs.retrofit2.converter.gson)
     implementation(libs.okhttp3.okhttp)
     implementation(libs.okhttp3.logging.interceptor)
+
+    // Others
+    implementation(libs.coil.compose)
 }

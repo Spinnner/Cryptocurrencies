@@ -1,10 +1,9 @@
-package com.spinner.cryptocurrencies.presentation
+package com.spinner.cryptocurrencies.presentation.screen.coin_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.spinner.cryptocurrencies.common.ResourceState
 import com.spinner.cryptocurrencies.domain.usecase.GetCoinsUseCase
-import com.spinner.cryptocurrencies.presentation.screen.coin_list.CoinListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

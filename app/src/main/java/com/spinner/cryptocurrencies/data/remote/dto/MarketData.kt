@@ -1,6 +1,5 @@
 package com.spinner.cryptocurrencies.data.remote.dto
 
-
 import com.google.gson.annotations.SerializedName
 
 data class MarketData(
@@ -38,7 +37,7 @@ data class MarketData(
     @SerializedName("low_24h")
     val low24h: Low24h,
     @SerializedName("price_change_24h")
-    val priceChange24h: Int,
+    val priceChange24h: Double,
     @SerializedName("price_change_percentage_24h")
     val priceChangePercentage24h: Double,
     @SerializedName("price_change_percentage_7d")
@@ -54,7 +53,7 @@ data class MarketData(
     @SerializedName("price_change_percentage_1y")
     val priceChangePercentage1y: Double,
     @SerializedName("market_cap_change_24h")
-    val marketCapChange24h: Long,
+    val marketCapChange24h: Double,
     @SerializedName("market_cap_change_percentage_24h")
     val marketCapChangePercentage24h: Double,
     @SerializedName("price_change_24h_in_currency")
@@ -80,11 +79,11 @@ data class MarketData(
     @SerializedName("market_cap_change_percentage_24h_in_currency")
     val marketCapChangePercentage24hInCurrency: MarketCapChangePercentage24hInCurrency,
     @SerializedName("total_supply")
-    val totalSupply: Int,
+    val totalSupply: Double,
     @SerializedName("max_supply")
-    val maxSupply: Int,
+    val maxSupply: Double,
     @SerializedName("circulating_supply")
-    val circulatingSupply: Int,
+    val circulatingSupply: Double,
     @SerializedName("last_updated")
     val lastUpdated: String
 )

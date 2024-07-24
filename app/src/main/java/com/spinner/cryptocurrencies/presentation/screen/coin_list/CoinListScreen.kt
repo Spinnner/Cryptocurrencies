@@ -1,4 +1,4 @@
-package com.spinner.cryptocurrencies.presentation.screen
+package com.spinner.cryptocurrencies.presentation.screen.coin_list
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -21,9 +21,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.spinner.cryptocurrencies.domain.common.CommonMockResponseFactory
 import com.spinner.cryptocurrencies.domain.model.Coin
-import com.spinner.cryptocurrencies.presentation.CoinListViewModel
-import com.spinner.cryptocurrencies.presentation.screen.coin_list.CoinListItemView
-import com.spinner.cryptocurrencies.presentation.screen.coin_list.CoinListState
+import com.spinner.cryptocurrencies.presentation.screen.Screen
 import com.spinner.cryptocurrencies.presentation.ui.UIModePreviews
 
 @Composable

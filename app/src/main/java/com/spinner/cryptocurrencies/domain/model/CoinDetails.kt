@@ -5,6 +5,7 @@ data class CoinDetails(
     val symbol: String,
     val name: String,
     val description: String,
+    val price: Double,
     val image: String,
     val priceChangePercentage24h: Double,
     val priceChangePercentage7d: Double,

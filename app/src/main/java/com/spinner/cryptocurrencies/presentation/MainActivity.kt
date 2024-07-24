@@ -9,8 +9,9 @@ import androidx.compose.material3.Surface
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.spinner.cryptocurrencies.presentation.screen.CoinListScreen
+import com.spinner.cryptocurrencies.presentation.screen.coin_list.CoinListScreen
 import com.spinner.cryptocurrencies.presentation.screen.Screen
+import com.spinner.cryptocurrencies.presentation.screen.coin_details.CoinDetailsScreen
 import com.spinner.cryptocurrencies.presentation.ui.theme.CryptocurrenciesTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,11 +34,11 @@ class MainActivity : ComponentActivity() {
                         ) {
                             CoinListScreen(navController)
                         }
-//                        composable(
-//                            route = Screen.CoinDetailsScreen.route + "/{coinId}"
-//                        ) {
-//                            CoinDetailsScreen()
-//                        }
+                        composable(
+                            route = Screen.CoinDetailsScreen.route + "/{coinId}"
+                        ) {
+                            CoinDetailsScreen()
+                        }
                     }
                 }
             }

@@ -7,7 +7,7 @@ data class Ticker(
     val base: String,
     val target: String,
     val market: Market,
-    val last: Int,
+    val last: Double,
     val volume: Double,
     @SerializedName("converted_last")
     val convertedLast: ConvertedLast,
