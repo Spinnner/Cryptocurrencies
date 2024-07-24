@@ -43,7 +43,7 @@ private fun CoinListContentView(
     Box(modifier = Modifier
         .fillMaxSize()
         .background(Color.Black)) {
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
+        LazyColumn(modifier = Modifier.fillMaxSize().padding(top = 32.dp)) {
             items(state.coins) { coin ->
                 CoinListItemView(
                     coin = coin,

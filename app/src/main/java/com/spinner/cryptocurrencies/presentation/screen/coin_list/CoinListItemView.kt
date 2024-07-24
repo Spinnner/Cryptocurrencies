@@ -32,7 +32,7 @@ fun CoinListItemView(
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
-            modifier = Modifier.width(180.dp),
+            modifier = Modifier.width(160.dp),
             maxLines = 1,
             text = "${coin.rank}. ${coin.name} (${coin.symbol.uppercase()})",
             color = Color.White,

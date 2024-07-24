@@ -38,6 +38,7 @@ fun CoinDetailsScreen(viewModel: CoinDetailsViewModel = hiltViewModel()) {
 private fun CoinDetailsContentView(state: CoinDetailsState) {
     Box(modifier = Modifier
         .fillMaxSize()
+        .padding(top = 32.dp)
         .background(Color.Black)) {
         CoinDetailsMainView(state.coinDetails)
         if(state.error.isNotBlank()) {
