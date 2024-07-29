@@ -6,7 +6,7 @@ import com.spinner.cryptocurrencies.common.ResourceState
 import com.spinner.cryptocurrencies.domain.usecase.GetCoinsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,8 +15,8 @@ class CoinListViewModel @Inject constructor(
     private val getCoinsUseCase: GetCoinsUseCase
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(CoinListState())
-    val state = _state.asStateFlow()
+    val state: StateFlow<CoinListState>
+        field = MutableStateFlow(CoinListState())
 
     init {
         getCoins()
@@ -27,15 +27,15 @@ class CoinListViewModel @Inject constructor(
             getCoinsUseCase().collect { result ->
                 when (result) {
                     is ResourceState.Success -> {
-                        _state.value = CoinListState(coins = result.data ?: emptyList())
+                        state.value = CoinListState(coins = result.data ?: emptyList())
                     }
                     is ResourceState.Error -> {
-                        _state.value = CoinListState(
+                        state.value = CoinListState(
                             error = result.message ?: "An unexpected error occured"
                         )
                     }
                     is ResourceState.Loading -> {
-                        _state.value = CoinListState(isLoading = true)
+                        state.value = CoinListState(isLoading = true)
                     }
                 }
             }
