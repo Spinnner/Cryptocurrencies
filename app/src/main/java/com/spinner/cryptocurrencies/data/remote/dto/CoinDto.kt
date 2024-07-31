@@ -2,7 +2,7 @@ package com.spinner.cryptocurrencies.data.remote.dto
 
 
 import com.google.gson.annotations.SerializedName
-import com.spinner.cryptocurrencies.common.round
+import com.spinner.cryptocurrencies.common.roundTo2Decimals
 import com.spinner.cryptocurrencies.domain.model.Coin
 
 data class CoinDto(
@@ -60,6 +60,6 @@ fun CoinDto.toCoin(): Coin {
         name = name,
         price = currentPrice,
         rank = marketCapRank,
-        priceChangePercentage24h = priceChangePercentage24h.round(2),
+        priceChangePercentage24h = priceChangePercentage24h.roundTo2Decimals(),
     )
 }

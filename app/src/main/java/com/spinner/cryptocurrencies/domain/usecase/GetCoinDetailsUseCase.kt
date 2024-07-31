@@ -16,7 +16,7 @@ class GetCoinDetailsUseCase @Inject constructor(
 ) {
     operator fun invoke(coinId: String): Flow<ResourceState<CoinDetails>> = flow {
         try {
-            emit(ResourceState.Loading())
+            emit(ResourceState.Loading)
             val coin = repository.getCoinDetails(coinId)
             emit(ResourceState.Success(coin))
         } catch(e: HttpException) {
