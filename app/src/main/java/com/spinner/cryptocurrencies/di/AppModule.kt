@@ -1,13 +1,17 @@
 package com.spinner.cryptocurrencies.di
 
+import android.content.Context
 import com.spinner.cryptocurrencies.common.Constants
+import com.spinner.cryptocurrencies.data.remote.CacheInterceptor
 import com.spinner.cryptocurrencies.data.remote.CoingeckoApi
 import com.spinner.cryptocurrencies.data.repository.CoinRepositoryImpl
 import com.spinner.cryptocurrencies.domain.repository.CoinRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -21,10 +25,21 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(): OkHttpClient {
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-        return OkHttpClient.Builder().addInterceptor(interceptor).build()
+    fun provideApplicationContext(@ApplicationContext appContext: Context) = appContext
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(context: Context): OkHttpClient {
+        val cacheSize = 10 * 1024 * 1024 // 10 MB
+        val cache = Cache(context.cacheDir, cacheSize.toLong())
+        val interceptor = HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
+        return OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .addNetworkInterceptor(CacheInterceptor())
+            .cache(cache)
+            .build()
     }
 
     @Provides
