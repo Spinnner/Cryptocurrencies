@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
@@ -23,9 +22,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import coil.compose.AsyncImage
 import com.spinner.cryptocurrencies.domain.common.CommonMockResponseFactory
 import com.spinner.cryptocurrencies.domain.model.CoinDetails
+import com.spinner.cryptocurrencies.presentation.common.AsyncCachedImage
 import com.spinner.cryptocurrencies.presentation.ui.UIModePreviews
 
 @Composable
@@ -88,11 +87,7 @@ private fun CoinDetailsMainView(coinDetails: CoinDetails?) {
                 overflow = TextOverflow.Ellipsis
             )
             Spacer(modifier = Modifier.height(16.dp))
-            AsyncImage(
-                modifier = Modifier.size(128.dp),
-                model = coin.image,
-                contentDescription = null,
-            )
+            AsyncCachedImage(url = coin.image)
         }
     }
 }
