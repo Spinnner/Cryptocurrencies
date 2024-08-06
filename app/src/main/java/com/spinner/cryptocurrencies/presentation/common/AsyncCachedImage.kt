@@ -2,6 +2,7 @@ package com.spinner.cryptocurrencies.presentation.common
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -16,31 +17,35 @@ import coil.request.ImageRequest
 fun AsyncCachedImage(url: String) {
     val context = LocalContext.current
 
-    val request = ImageRequest.Builder(context)
-        .data(url)
-        .crossfade(true)
-        .memoryCachePolicy(CachePolicy.ENABLED)
-        .diskCachePolicy(CachePolicy.ENABLED)
-        .build()
+    val imageRequest = remember(url) {
+        ImageRequest.Builder(context)
+            .data(url)
+            .crossfade(true)
+            .memoryCachePolicy(CachePolicy.ENABLED)
+            .diskCachePolicy(CachePolicy.ENABLED)
+            .build()
+    }
 
-    val imageLoader = ImageLoader.Builder(context)
-        .memoryCache {
-            MemoryCache.Builder(context)
-                .maxSizePercent(0.25)
-                .build()
-        }
-        .diskCache {
-            DiskCache.Builder()
-                .directory(context.cacheDir.resolve("image_cache"))
-                .maxSizePercent(0.02)
-                .build()
-        }
-        .respectCacheHeaders(false)
-        .build()
+    val imageLoader = remember(context) {
+        ImageLoader.Builder(context)
+            .memoryCache {
+                MemoryCache.Builder(context)
+                    .maxSizePercent(0.25)
+                    .build()
+            }
+            .diskCache {
+                DiskCache.Builder()
+                    .directory(context.cacheDir.resolve("image_cache"))
+                    .maxSizePercent(0.02)
+                    .build()
+            }
+            .respectCacheHeaders(false)
+            .build()
+    }
 
     AsyncImage(
         modifier = Modifier.size(128.dp),
-        model = request,
+        model = imageRequest,
         imageLoader = imageLoader,
         contentDescription = "img_coin",
     )
