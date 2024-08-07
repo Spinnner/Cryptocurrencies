@@ -1,6 +1,11 @@
 package com.spinner.cryptocurrencies.presentation.screen
 
-sealed class Screen(val route: String) {
-    data object CoinListScreen: Screen("coin_list_screen")
-    data object CoinDetailsScreen: Screen("coin_details_screen")
+import kotlinx.serialization.Serializable
+
+sealed class Screen() {
+    @Serializable
+    data object CoinList: Screen()
+
+    @Serializable
+    data class CoinDetails(val coinId: String): Screen()
 }

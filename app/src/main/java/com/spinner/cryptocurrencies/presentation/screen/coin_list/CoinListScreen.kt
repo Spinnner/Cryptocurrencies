@@ -31,7 +31,7 @@ fun CoinListScreen(
 ) {
     val state = viewModel.state.collectAsStateWithLifecycle()
     CoinListContentView(state.value) { coin ->
-        navController.navigate(Screen.CoinDetailsScreen.route + "/${coin.id}")
+        navController.navigate(Screen.CoinDetails(coin.id))
     }
 }
 

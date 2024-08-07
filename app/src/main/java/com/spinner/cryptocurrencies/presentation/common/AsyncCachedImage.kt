@@ -26,7 +26,7 @@ fun AsyncCachedImage(url: String) {
             .build()
     }
 
-    val imageLoader = remember(context) {
+    val imageLoader = remember {
         ImageLoader.Builder(context)
             .memoryCache {
                 MemoryCache.Builder(context)
