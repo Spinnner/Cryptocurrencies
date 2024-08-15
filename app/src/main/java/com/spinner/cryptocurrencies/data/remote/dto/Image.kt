@@ -1,8 +1,8 @@
 package com.spinner.cryptocurrencies.data.remote.dto
 
+import kotlinx.serialization.Serializable
 
-import com.google.gson.annotations.SerializedName
-
+@Serializable
 data class Image(
     val thumb: String,
     val small: String,

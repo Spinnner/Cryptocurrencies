@@ -94,7 +94,7 @@ dependencies {
 
     // Retrofit
     implementation(libs.retrofit2)
-    implementation(libs.retrofit2.converter.gson)
+    implementation(libs.retrofit2.converter.kotlinx)
     implementation(libs.okhttp3.okhttp)
     implementation(libs.okhttp3.logging.interceptor)
 

@@ -1,7 +1,9 @@
 package com.spinner.cryptocurrencies.data.remote.dto
 
+import kotlinx.serialization.Serializable
 
-data class Low24h(
+@Serializable
+data class PriceChangeInCurrency(
     val usd: Double,
     val eur: Double,
 )

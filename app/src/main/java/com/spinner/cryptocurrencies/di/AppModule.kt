@@ -1,6 +1,7 @@
 package com.spinner.cryptocurrencies.di
 
 import android.content.Context
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.spinner.cryptocurrencies.common.Constants
 import com.spinner.cryptocurrencies.data.remote.CacheInterceptor
 import com.spinner.cryptocurrencies.data.remote.CoingeckoApi
@@ -11,11 +12,12 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.json.Json
 import okhttp3.Cache
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 
@@ -45,10 +47,12 @@ object AppModule {
     @Provides
     @Singleton
     fun providePaprikaApi(client: OkHttpClient): CoingeckoApi {
+        val networkJson = Json { ignoreUnknownKeys = true }
+
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(networkJson.asConverterFactory("application/json".toMediaType()))
             .build()
             .create(CoingeckoApi::class.java)
     }
